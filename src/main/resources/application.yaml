@@ -1,0 +1,24 @@
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://localhost:3306/flower?serverTimezone=Asia/Shanghai&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    hikari:
+      max-lifetime: 300000
+
+jwt:
+  secret: 31ba68a93430441b5dad58c37523df30df798a9e3ef0d7905faa6025a2e90b499d17cc92476340b685413642a7bd6708c81f4050df24ce0f6b9d986b6caf77b2
