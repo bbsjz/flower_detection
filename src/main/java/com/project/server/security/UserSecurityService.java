@@ -1,5 +1,6 @@
 package com.project.server.security;
 
+import com.project.server.service.IUserService;
 import com.project.server.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserSecurityService implements UserDetailsService {
     @Autowired
-    UserService userService;
+    IUserService userService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
