@@ -2,11 +2,11 @@
 
 web/
 controller/
-
+src/main/java/com/project/server/service/
 #src/main/java/com/project/server/config/**
+#src/main/java/com/project/server/security/**
 src/main/java/com/project/server/dao/**
 src/main/java/com/project/server/entity/**
-#src/main/java/com/project/server/security/**
 src/main/resources/static/flower102/**
 HELP.md
 *.jpg
