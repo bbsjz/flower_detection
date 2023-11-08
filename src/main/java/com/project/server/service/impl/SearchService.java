@@ -4,6 +4,7 @@ import com.project.server.dao.FlowerJpaRepository;
 import com.project.server.entity.Flower;
 import com.project.server.entity.FlowerDto;
 import com.project.server.entity.Info;
+import com.project.server.service.IInfoService;
 import com.project.server.service.ISearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ public class SearchService implements ISearchService {
     @Autowired
     FlowerJpaRepository flowerJpaRepository;
     @Autowired
-    InfoService infoService;
+    IInfoService infoService;
 
     @Override
     public List<FlowerDto> findFlowerByNameLike(String name)
@@ -35,5 +36,18 @@ public class SearchService implements ISearchService {
             flowerDtos.add(flowerDto);
         }
         return flowerDtos;
+    }
+
+    @Override
+    public Flower getFlowerById(int id)
+    {
+        Flower flower=flowerJpaRepository.findById(id).get();
+        return flower;
+    }
+
+    @Override
+    public List<Flower> getAllFlower()
+    {
+        return flowerJpaRepository.findAll();
     }
 }

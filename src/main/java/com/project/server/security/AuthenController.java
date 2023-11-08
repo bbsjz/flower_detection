@@ -1,6 +1,7 @@
 package com.project.server.security;
 
 import com.project.server.entity.User;
+import com.project.server.service.IUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

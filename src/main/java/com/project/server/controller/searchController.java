@@ -1,8 +1,11 @@
 package com.project.server.controller;
 
 
+import com.project.server.entity.Flower;
 import com.project.server.entity.FlowerDto;
-import com.project.server.service.impl.SearchService;
+import com.project.server.entity.InfoIdDto;
+import com.project.server.service.IInfoService;
+import com.project.server.service.ISearchService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,17 +18,34 @@ import java.util.List;
 
 @RestController
 @RequestMapping("search")
-@Api("文本搜索接口")
+@Api("花卉信息接口")
 public class searchController {
 
     @Autowired
-    SearchService searchService;
+    ISearchService searchService;
 
-    @GetMapping(value="",produces = "application/json;charset=UTF-8")
-    @ApiOperation("按文本模糊匹配所有标签")
+    @Autowired
+    IInfoService infoService;
+
+
+    @GetMapping(value="findByName",produces = "application/json;charset=UTF-8")
+    @ApiOperation("按文本模糊匹配所有花卉标签")
     public ResponseEntity<List<FlowerDto>> findByName(String name)
     {
-        List<FlowerDto> list=searchService.findFlowerByNameLike(name);
-        return ResponseEntity.ok(list);
+        return ResponseEntity.ok(searchService.findFlowerByNameLike(name));
+    }
+
+    @GetMapping("getAll")
+    @ApiOperation("获取全部类别信息")
+    public ResponseEntity<List<Flower>> getAllFlower()
+    {
+        return ResponseEntity.ok(searchService.getAllFlower());
+    }
+
+    @GetMapping("getFlowerById")
+    @ApiOperation("获取某个类别信息")
+    public ResponseEntity<InfoIdDto> getFlowerById(int id)
+    {
+        return ResponseEntity.ok(infoService.findInfoDtoById(id));
     }
 }

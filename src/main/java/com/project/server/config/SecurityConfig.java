@@ -27,7 +27,11 @@ public class SecurityConfig {
             "/swagger-ui.html",
             "/swagger-ui/**",
             "/v3/api-docs",
-            "/webjars/**"
+            "/webjars/**",
+            "/authentication/login",
+            "/authentication/register",
+            "/flower102/**",
+            "favicon.ico:1"
     };
     @Bean
     public AuthenticationManager getManager(AuthenticationConfiguration authenticationConfiguration) throws Exception
@@ -42,7 +46,6 @@ public class SecurityConfig {
 
         //有验证的
         httpSecurity.authorizeRequests()
-                .antMatchers("/authentication/login").permitAll()
                 .antMatchers(AUTH_LIST).permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
