@@ -13,6 +13,7 @@ import PredictView from "@/views/PredictView";
 import SearchList from "@/views/SearchList";
 import LoginView from "@/views/LoginView.vue";
 import registerView from "@/views/RegisterView";
+// import {Message} from 'element-ui';
 
 const routes = [
     { name: 'login', path: '/login', component: LoginView },

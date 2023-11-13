@@ -15,7 +15,7 @@ export function getLabelFromText(url, query) {
 export function postImage(url, file) {
     let headers = { "Content-Type": "multipart/form-data" }
     let formData = new FormData();
-    formData.append("file", file);
+    formData.append("image", file);
     return http.post(url, headers, formData);
 
 }

@@ -2,7 +2,7 @@ import axios from "axios";
 
 const service = axios.create({
     withCredentials: false,     // 跨越访问是否需要凭证
-    timeout: 5000               // 超时时间
+    timeout: 50000               // 超时时间
 })
 
 // 请求拦截器
