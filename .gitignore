@@ -1,0 +1,41 @@
+.mvn
+
+web/
+controller/
+src/main/java/com/project/server/service/
+#src/main/java/com/project/server/config/**
+#src/main/java/com/project/server/security/**
+src/main/java/com/project/server/dao/**
+src/main/java/com/project/server/entity/**
+src/main/resources/static/flower102/**
+HELP.md
+*.jpg
+*.py
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+### VS Code ###
+.vscode/

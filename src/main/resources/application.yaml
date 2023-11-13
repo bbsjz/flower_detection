@@ -7,6 +7,8 @@ server:
       force: true
 
 spring:
+  mvc:
+    static-path-pattern: /static/**
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     show-sql: true
@@ -22,3 +24,5 @@ spring:
 
 jwt:
   secret: 31ba68a93430441b5dad58c37523df30df798a9e3ef0d7905faa6025a2e90b499d17cc92476340b685413642a7bd6708c81f4050df24ce0f6b9d986b6caf77b2
+
+
