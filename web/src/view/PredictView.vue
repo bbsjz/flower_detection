@@ -6,12 +6,30 @@
         </router-link>
         <!--  <img src="../assets/back_btn.png" id="back_btn">-->
     </div>
+    <div id="pre-btn-container" style="display: block;position: static">
+      <el-button id="predict-btn" type="primary"  @click="drawer = true">
+        chat >
+      </el-button>
+    </div>
 
+  <el-drawer v-model="drawer" title="I am the title" :with-header="false">
+<!--      <span>Hi there!</span>
+    <div class="bubbles-container">
+      &lt;!&ndash; 气泡会动态生成在这里 &ndash;&gt;
+    </div>
+    <div class="send-content">
+      <textarea class="text-input" rows="6" placeholder="请输入文本" v-model="text"></textarea>
+      <button class="send-button" @click="addDiv">发送</button>
+    </div>-->
+<!--    <div class="chat-box">
+      <ChatPage :image_base64="image_base64" />
+    </div>-->
+    <ChatPage :image_base64="image_base64" />
+    </el-drawer>
     <div id="predictBox">
         <div id="box_of_origin">
             <img :src="img" id="plant_origin_img">
         </div>
-        <div id="text">{{ message }}</div>
         <hr id="hr" />
         <div v-for="result in results" :key="result.id" id="result_box">
             <div class="similarity">{{ result.similarity }}</div>
@@ -35,36 +53,47 @@
 </template>
 
 <script>
-export default {
-    name: "PredictView"
-}
+
 </script>
 
 <script setup>
 
-
+//import axios from "axios";
+//const text = ref('')
 
 import { ref } from 'vue';
 import { useRouter, useRoute } from 'vue-router'
+import ChatPage from "@/components/ChatPage.vue";
+
+
+const drawer = ref(false)
+const image_base64=ref()
+
+
 
 const router = useRouter();
 const route = useRoute();
 
+
+
+// let img = ref()
 let img = ref()
-let message = ref()
 let results = ref()
+//const image_base64 = ref();
 
 if (route.params.from === "/") {
     img.value = history.state.params.img
-    message.value = history.state.params.message
-    results.value = history.state.params.possibility
+    console.log(img.value)
+    image_base64.value = history.state.params.img
+    //img.value = require('@/assets/bg1.jpg')
+    //image_base64.value = require('@/assets/bg1.jpg')//要改
+  results.value = history.state.params.possibility
     sessionStorage.setItem("img", img.value)
-    sessionStorage.setItem("message", message.value)
     sessionStorage.setItem("possibility", JSON.stringify(results.value))
 }
 else {
     img.value = sessionStorage.getItem("img")
-    message.value = sessionStorage.getItem("message")
+    image_base64.value = sessionStorage.getItem("img")
     results.value = JSON.parse(sessionStorage.getItem("possibility"))
 }
 
@@ -78,10 +107,98 @@ const searchMore = (query) => {
     let url = "https://www.bing.com/search?q=" + query
     window.open(url)
 }
+//发送消息
+/*function addDiv() {
+    const div = document.createElement('div');
+    // 设置 div 的样式、内容等
+    div.className = 'bubble';
+    div.textContent = text.value;
+
+    const container = document.querySelector('.bubbles-container');
+    container.appendChild(div);
+
+    //向后端发数据
+  axios({
+    url: "http://localhost:8080/authentication/login",               // 请求地址
+    method: "post",                       // 请求方法
+    headers: {                            // 请求头
+      "Content-Type": "application/json",
+    },
+    data: ({                             // 请求参数
+      text:text.value
+    }),
+  }).then((res) => {
+    //等待返回消息，创建div，加到气泡里
+    const div2 = document.createElement('div');
+    // 设置 div 的样式、内容等
+    div2.className = 'left-bubble';
+    div2.textContent = res.value;
+    container.appendChild(div2);
+  });
+}*/
 
 </script>
 
 <style>
+#pre-btn-container{
+  margin-top: 2vh;
+  height: 5vh;
+  width: 100%;
+  background-color: transparent;
+}
+#predict-btn{
+  height: 5vh;
+  width: 8vh;
+  margin-right: 1vh;
+  float: right;
+  background-color: transparent;
+  border-color: transparent;
+  color: #383838;
+  font-size: 20px;
+}
+
+
+.bubbles-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.bubble {
+  align-self: flex-end;
+  background-color: #e0e0e0;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+.left-bubble {
+  align-self: flex-start;
+  background-color: #e0e0e0;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+.send-content{
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+}
+
+.text-input {
+  flex: 8;
+  margin-right: 10px;
+}
+
+.send-button {
+  flex: 2;
+}
+
 #logo {
     height: 115%;
     width: auto;
