@@ -12,8 +12,7 @@ import javax.persistence.Id;
 @Getter
 @Setter
 @Proxy(lazy = false)
-@ApiModel("返回给网页的花卉")
-@Entity
+@ApiModel("花卉及介绍信息")
 public class FlowerDto {
     @Id
     int id;
